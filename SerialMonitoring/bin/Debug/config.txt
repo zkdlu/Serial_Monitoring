@@ -1,0 +1,2 @@
+ch1, Humidity, #ff0000, 25, 5, m/h
+ch2, Heating, #00ff00, 25, 5, m/h

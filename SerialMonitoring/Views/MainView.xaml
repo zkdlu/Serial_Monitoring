@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SerialMonitoring.Views" xmlns:viewmodels="clr-namespace:SerialMonitoring.ViewModels"
+             xmlns:local="clr-namespace:SerialMonitoring.Views" xmlns:viewmodels="clr-namespace:SerialMonitoring.ViewModels" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:command="http://www.galasoft.ch/mvvmlight"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
@@ -49,6 +49,9 @@
                 VerticalAlignment="Center" HorizontalAlignment="Right"
                 Margin="0,0,16,0"/>
         </Grid>
+        <Grid Grid.Row="1">
+            <local:MonitoringView/>
+        </Grid>
         <Grid Grid.Row="2" Background="White">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -58,10 +61,14 @@
             <RadioButton Content="Mode 1" 
                          Grid.Column="0"
                          IsChecked="{Binding Path=IsModeFirst}"
+                         Command="{Binding ModeChangeCommand}"
                          FontSize="36"/>
+
             <RadioButton Content="Mode 2" 
                          Grid.Column="1"
+                         Command="{Binding ModeChangeCommand}"
                          FontSize="36"/>
+
             <ToggleButton Content="음소거(ON/OFF)" 
                           Grid.Column="2"
                           IsChecked="{Binding Path=IsMute}"

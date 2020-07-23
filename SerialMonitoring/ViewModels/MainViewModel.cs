@@ -1,11 +1,31 @@
-﻿using SerialMonitoring.Common;
+﻿using GalaSoft.MvvmLight.Command;
+using SerialMonitoring.Common;
 using System;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace SerialMonitoring.ViewModels
 {
     class MainViewModel : BaseViewModel
     {
+        private ICommand modeChangeCommand;
+        public ICommand ModeChangeCommand
+        {
+            get
+            {
+                if (modeChangeCommand == null)
+                {
+                    modeChangeCommand = new RelayCommand(() =>
+                    {
+                        Mediator.NotifyColleagues("ChangeView", IsModeFirst);
+                    });
+                }
+
+                return modeChangeCommand;
+            }
+        }
+
         private string now;
         public string Now
         {
@@ -47,6 +67,8 @@ namespace SerialMonitoring.ViewModels
             {
                 isMute = value;
                 OnRaiseProperty(nameof(IsMute));
+
+                Config.IsMute = isMute;
             }
         }
 
@@ -58,6 +80,8 @@ namespace SerialMonitoring.ViewModels
             {
                 isModeFirst = value;
                 OnRaiseProperty(nameof(IsModeFirst));
+
+                Config.IsModeFirst = isModeFirst;
             }
         }
 

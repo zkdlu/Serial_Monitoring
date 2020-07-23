@@ -16,7 +16,7 @@ namespace SerialMonitoring.Models
             set;
         }
 
-        public Brush Rrb
+        public Brush Rgb
         {
             get;
             set;

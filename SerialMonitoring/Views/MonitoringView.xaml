@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="SerialMonitoring.Views.MonitoringView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SerialMonitoring.Views" xmlns:viewmodels="clr-namespace:SerialMonitoring.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodels:MonitoringViewModel/>
+    </UserControl.DataContext>
+    <Grid Background="LightBlue">
+        <TabControl SelectedIndex="{Binding Path=SelectedModeFirst, UpdateSourceTrigger=PropertyChanged}">
+            <TabControl.ItemContainerStyle>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </Style>
+            </TabControl.ItemContainerStyle>
+            <TabItem>
+                <TextBlock Text="1"/>
+            </TabItem>
+            <TabItem>
+                <TextBlock Text="2"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>
