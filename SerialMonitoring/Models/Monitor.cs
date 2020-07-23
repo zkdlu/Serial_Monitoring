@@ -5,14 +5,10 @@ namespace SerialMonitoring.Models
 {
     public class Monitor
     {
-        private readonly IList<Channel> channels = new List<Channel>();
+        public double Width { get; set; }
 
-        public IList<Channel> Channels
-        {
-            get
-            {
-                return channels;
-            }
-        }
+        public double Height { get; set; }
+
+        public IList<Channel> Channels { get; } = new List<Channel>();
     }
 }

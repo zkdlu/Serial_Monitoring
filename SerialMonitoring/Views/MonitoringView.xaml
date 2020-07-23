@@ -17,10 +17,10 @@
                 </Style>
             </TabControl.ItemContainerStyle>
             <TabItem>
-                <TextBlock Text="1"/>
+                <local:MonitorGridView/>
             </TabItem>
             <TabItem>
-                <TextBlock Text="2"/>
+                <local:MonitorBarView/>
             </TabItem>
         </TabControl>
     </Grid>

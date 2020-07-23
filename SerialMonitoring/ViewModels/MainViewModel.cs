@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using SerialMonitoring.Common;
 using System;
+using System.Configuration;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -87,7 +88,12 @@ namespace SerialMonitoring.ViewModels
 
         public MainViewModel()
         {
-            Config.Read();
+            var channels = Config.ReadChannels();
+            foreach (var channel in channels)
+            {
+                ChannelManager.Instance.Channels.Add(channel);
+            }
+
             Config.SetEnvIni();
 
             Title = Config.Title;

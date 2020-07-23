@@ -70,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\ChannelManager.cs" />
     <Compile Include="Common\Config.cs" />
     <Compile Include="Common\Notifier.cs" />
     <Compile Include="Models\Channel.cs" />
@@ -78,8 +79,15 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Mediator.cs" />
     <Compile Include="ViewModels\MonitoringViewModel.cs" />
+    <Compile Include="ViewModels\MonitorViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MonitorBarView.xaml.cs">
+      <DependentUpon>MonitorBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MonitorGridView.xaml.cs">
+      <DependentUpon>MonitorGridView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MonitoringView.xaml.cs">
       <DependentUpon>MonitoringView.xaml</DependentUpon>
@@ -96,7 +104,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\mapper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MonitorBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MonitorGridView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

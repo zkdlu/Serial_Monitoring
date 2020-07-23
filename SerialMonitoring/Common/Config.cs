@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Policy;
 using System.Windows;
 using System.Windows.Media;
 
@@ -16,6 +17,10 @@ namespace SerialMonitoring.Common
         public static int Period { get; set; }
         public static bool IsMute { get; set; }
         public static bool IsModeFirst { get; set; }
+
+        public static double ScreenWidth { get; } = System.Windows.SystemParameters.PrimaryScreenWidth - 50;
+
+        public static double ScreenHeight { get; } = System.Windows.SystemParameters.PrimaryScreenHeight - 200;
 
         public static void SetEnvIni()
         {
@@ -55,7 +60,7 @@ namespace SerialMonitoring.Common
             }
         }
 
-        public static List<Channel> Read()
+        public static List<Channel> ReadChannels()
         {
             var result = new List<Channel>();
 

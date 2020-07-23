@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\외주\C#\SerialMonitoring\SerialMonitoring\App.xaml
-3402173572
+7-35082491
 
-151159514269
+19-539234795
 122338210569
-MainWindow.xaml;Views\MainView.xaml;Views\MonitoringView.xaml;
+MainWindow.xaml;Resources\mapper.xaml;Resources\styles.xaml;Views\MainView.xaml;Views\MonitorBarView.xaml;Views\MonitorGridView.xaml;Views\MonitoringView.xaml;
 
 False
 

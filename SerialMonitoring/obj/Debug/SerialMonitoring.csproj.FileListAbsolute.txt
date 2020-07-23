@@ -30,3 +30,10 @@ D:\외주\C#\SerialMonitoring\SerialMonitoring\bin\Debug\GalaSoft.MvvmLight.Extr
 D:\외주\C#\SerialMonitoring\SerialMonitoring\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
 D:\외주\C#\SerialMonitoring\SerialMonitoring\bin\Debug\GalaSoft.MvvmLight.Platform.xml
 D:\외주\C#\SerialMonitoring\SerialMonitoring\obj\Debug\SerialMonitoring.csproj.CopyComplete
+D:\외주\C#\SerialMonitoring\SerialMonitoring\obj\Debug\Views\MonitorGridView.g.cs
+D:\외주\C#\SerialMonitoring\SerialMonitoring\obj\Debug\Views\MonitorBarView.g.cs
+D:\외주\C#\SerialMonitoring\SerialMonitoring\obj\Debug\Views\MonitorBarView.baml
+D:\외주\C#\SerialMonitoring\SerialMonitoring\obj\Debug\Views\MonitorGridView.baml
+D:\외주\C#\SerialMonitoring\SerialMonitoring\obj\Debug\Resources\styles.baml
+D:\외주\C#\SerialMonitoring\SerialMonitoring\obj\Debug\App.baml
+D:\외주\C#\SerialMonitoring\SerialMonitoring\obj\Debug\Resources\mapper.baml
