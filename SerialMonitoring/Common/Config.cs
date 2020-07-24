@@ -14,13 +14,24 @@ namespace SerialMonitoring.Common
         private static readonly string env_Name = $"{Environment.CurrentDirectory}/env.ini";
 
         public static string Title { get; set; }
-        public static int Period { get; set; }
+        public static int ScreenPeriod { get; set; }
         public static bool IsMute { get; set; }
         public static bool IsModeFirst { get; set; }
 
-        public static double ScreenWidth { get; } = System.Windows.SystemParameters.PrimaryScreenWidth - 50;
+        public static double ScreenWidth { get; } = System.Windows.SystemParameters.PrimaryScreenWidth;
 
-        public static double ScreenHeight { get; } = System.Windows.SystemParameters.PrimaryScreenHeight - 200;
+        public static double ScreenHeight { get; } = System.Windows.SystemParameters.PrimaryScreenHeight - 160;
+
+        static Config()
+        {
+            var channels = ReadChannels();
+            foreach (var channel in channels)
+            {
+                ChannelManager.Instance.Channels.Add(channel);
+            }
+
+            SetEnvIni();
+        }
 
         public static void SetEnvIni()
         {
@@ -38,9 +49,9 @@ namespace SerialMonitoring.Common
                         {
                             Title = elems[1];
                         }
-                        else if (string.Compare(elems[0], "nextScrPeriod ", true) == 0)
+                        else if (string.Compare(elems[0], "nextScrPeriod", true) == 0)
                         {
-                            Period = int.Parse(elems[1]);
+                            ScreenPeriod = int.Parse(elems[1]) * 1000;
                         }
                         else if (string.Compare(elems[0], "mute", true) == 0)
                         {

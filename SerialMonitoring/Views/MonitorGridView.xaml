@@ -3,21 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SerialMonitoring.Views" xmlns:viewmodels="clr-namespace:SerialMonitoring.ViewModels"
+             xmlns:local="clr-namespace:SerialMonitoring.Views" xmlns:viewmodels="clr-namespace:SerialMonitoring.ViewModels" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:command="http://www.galasoft.ch/mvvmlight"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
-        <viewmodels:MonitorViewModel/>
+        <viewmodels:MonitorGridViewModel/>
     </UserControl.DataContext>
     <Grid Background="LightCyan">
-        <ScrollViewer>
-            <ItemsControl ItemsSource="{Binding Path=Monitors}">
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseDown">
+                <command:EventToCommand Command="{Binding Path=NextMonitorCommand}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        
+        <ContentControl Content="{Binding Path=SelectedMonitor, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <!--<ItemsControl ItemsSource="{Binding Path=Monitors}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
-            </ItemsControl>
-        </ScrollViewer>
+            </ItemsControl>-->
     </Grid>
 </UserControl>

@@ -49,17 +49,6 @@ namespace SerialMonitoring.ViewModels
             }
         }
 
-        private int period;
-        public int Period
-        {
-            get { return period; }
-            set
-            {
-                period = value;
-                OnRaiseProperty(nameof(Period));
-            }
-        }
-
         private bool isMute;
         public bool IsMute
         {
@@ -88,42 +77,22 @@ namespace SerialMonitoring.ViewModels
 
         public MainViewModel()
         {
-            var channels = Config.ReadChannels();
-            foreach (var channel in channels)
-            {
-                ChannelManager.Instance.Channels.Add(channel);
-            }
-
-            Config.SetEnvIni();
-
             Title = Config.Title;
-            Period = Config.Period;
             IsMute = Config.IsMute;
             IsModeFirst = Config.IsModeFirst;
 
-            Task.Run(async() =>
-            {
-                while (true)
-                {
-                    string result = await GetCurrentTime();
-                    Now = result;
-                }
-            });
+            StartWithInterval(10, SetCurrentTime);
         }
 
-        private async Task<string> GetCurrentTime()
+        private void SetCurrentTime()
         {
-            var task = new Task<string>(() =>
+            Task.Run(() =>
             {
                 DateTime dateTime = DateTime.Now;
 
-                return dateTime.ToString("yyyy-MM-dd hh:mm:ss");
+                string result = dateTime.ToString("yyyy-MM-dd hh:mm:ss");
+                Now = result;
             });
-            task.Start();
-
-            await task;
-
-            return task.Result;
         }
     }
 }

@@ -22,6 +22,12 @@ namespace SerialMonitoring.Models
             set;
         }
 
+        public double Value
+        {
+            get;
+            set;
+        }
+
         public double Max
         {
             get;

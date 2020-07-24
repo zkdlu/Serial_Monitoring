@@ -3,5 +3,13 @@ ch2, Heating, #00ff00, 25, 5, m/h
 ch3, Humidity, #ff0000, 25, 5, m/h
 ch4, Heating, #00ff00, 25, 5, m/h
 ch5, Humidity, #ff0000, 25, 5, m/h
-ch6, Heating, #00ff00, 25, 5, m/h
+ch6, Humidity, #ff0000, 25, 5, m/h
 ch7, Heating, #00ff00, 25, 5, m/h
+ch8, Humidity, #ff0000, 25, 5, m/h
+ch9, Heating, #00ff00, 25, 5, m/h
+ch10, Humidity, #ff0000, 25, 5, m/h
+ch11, Humidity, #ff0000, 25, 5, m/h
+ch12, Heating, #00ff00, 25, 5, m/h
+ch13, Humidity, #ff0000, 25, 5, m/h
+ch14, Heating, #00ff00, 25, 5, m/h
+ch15, Humidity, #ff0000, 25, 5, m/h

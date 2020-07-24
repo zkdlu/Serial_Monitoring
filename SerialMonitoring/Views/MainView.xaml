@@ -47,7 +47,7 @@
                          Command="{Binding ModeChangeCommand}"
                          FontSize="36"/>
 
-            <ToggleButton Content="음소거(ON/OFF)" 
+            <CheckBox Content="음소거(ON/OFF)" 
                           Grid.Column="2"
                           IsChecked="{Binding Path=IsMute}"
                           FontSize="36"/>

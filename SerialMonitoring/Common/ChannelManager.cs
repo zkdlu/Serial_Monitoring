@@ -21,7 +21,7 @@ namespace SerialMonitoring.Common
             {
                 monitors.Add(new Monitor
                 {
-                    Width = Config.ScreenWidth / monitorCount,
+                    Width = Config.ScreenWidth,
                     Height = Config.ScreenHeight
                 });
             }

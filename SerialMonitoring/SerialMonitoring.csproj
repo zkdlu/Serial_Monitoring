@@ -76,8 +76,16 @@
     <Compile Include="Models\Channel.cs" />
     <Compile Include="Models\Monitor.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Entity\ChannelBarEntityViewModel.cs" />
+    <Compile Include="ViewModels\Entity\ChannelEntityViewModel.cs" />
+    <Compile Include="ViewModels\Entity\ChannelGridEntityViewModel.cs" />
+    <Compile Include="ViewModels\Entity\MonitorBarEntityViewModel.cs" />
+    <Compile Include="ViewModels\Entity\MonitorEntityViewModel.cs" />
+    <Compile Include="ViewModels\Entity\MonitorGridEntityViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Mediator.cs" />
+    <Compile Include="ViewModels\MonitorBarViewModel.cs" />
+    <Compile Include="ViewModels\MonitorGridViewModel.cs" />
     <Compile Include="ViewModels\MonitoringViewModel.cs" />
     <Compile Include="ViewModels\MonitorViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
