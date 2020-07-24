@@ -1,8 +1,9 @@
-﻿using System.Windows.Media;
+﻿using SerialMonitoring.Common;
+using System.Windows.Media;
 
 namespace SerialMonitoring.Models
 {
-    public class Channel
+    public class Channel : Notifier
     {
         public string Name
         {
@@ -22,16 +23,30 @@ namespace SerialMonitoring.Models
             set;
         }
 
+        private double val;
         public double Value
         {
-            get;
-            set;
+            get { return val; }
+            set
+            {
+                val = value;
+                OnRaiseProperty(nameof(Value));
+                OnRaiseProperty(nameof(Percentage));
+            }
         }
 
         public double Max
         {
             get;
             set;
+        }
+
+        public double Percentage
+        {
+            get
+            {
+                return Value / Max;
+            }
         }
 
         public double AlertLimit

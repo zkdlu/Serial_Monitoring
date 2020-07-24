@@ -9,7 +9,7 @@
     <UserControl.DataContext>
         <viewmodels:MonitorBarViewModel/>
     </UserControl.DataContext>
-    <Grid Background="LightGreen">
+    <Grid Background="White">
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="MouseDown">
                 <command:EventToCommand Command="{Binding Path=NextMonitorCommand}"/>

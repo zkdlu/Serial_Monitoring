@@ -87,7 +87,7 @@ namespace SerialMonitoring.Common
                     {
                         Channel channel = new Channel
                         {
-                            Name = elems[0],
+                            Name = elems[0].ToUpper(),
                             SubName = elems[1],
                             Rgb = new BrushConverter().ConvertFromString(elems[2]) as SolidColorBrush,
                             Max = int.Parse(elems[3]),

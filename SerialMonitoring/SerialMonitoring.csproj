@@ -73,8 +73,14 @@
     <Compile Include="Common\ChannelManager.cs" />
     <Compile Include="Common\Config.cs" />
     <Compile Include="Common\Notifier.cs" />
+    <Compile Include="Converters\BrushToColorConverter.cs" />
+    <Compile Include="Converters\PercentageConterter.cs" />
+    <Compile Include="Converters\PercentageToVisibilityConverter.cs" />
+    <Compile Include="Converters\PercentToPointConverter.cs" />
     <Compile Include="Models\Channel.cs" />
     <Compile Include="Models\Monitor.cs" />
+    <Compile Include="Utils\SerialManager.cs" />
+    <Compile Include="Utils\SerialPacket.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Entity\ChannelBarEntityViewModel.cs" />
     <Compile Include="ViewModels\Entity\ChannelEntityViewModel.cs" />

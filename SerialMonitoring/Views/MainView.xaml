@@ -9,7 +9,7 @@
     <UserControl.DataContext>
         <viewmodels:MainViewModel/>
     </UserControl.DataContext>
-    <Grid Background="Gray">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition/>

@@ -9,7 +9,7 @@
     <UserControl.DataContext>
         <viewmodels:MonitoringViewModel/>
     </UserControl.DataContext>
-    <Grid Background="LightBlue">
+    <Grid>
         <TabControl SelectedIndex="{Binding Path=SelectedModeFirst, UpdateSourceTrigger=PropertyChanged}">
             <TabControl.ItemContainerStyle>
                 <Style TargetType="{x:Type TabItem}">

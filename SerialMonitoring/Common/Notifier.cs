@@ -2,7 +2,7 @@
 
 namespace SerialMonitoring.Common
 {
-    class Notifier : INotifyPropertyChanged
+    public class Notifier : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

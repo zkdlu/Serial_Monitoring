@@ -12,6 +12,7 @@ namespace SerialMonitoring.ViewModels
         private Action action;
         public BaseViewModel()
         {
+           
         }
 
         public void StartWithInterval(int interval, Action action)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SerialMonitoring.Common;
+using System;
 using System.Windows;
 
 namespace SerialMonitoring.ViewModels
@@ -19,6 +20,7 @@ namespace SerialMonitoring.ViewModels
         public MonitoringViewModel()
         {
             Mediator.Register("ChangeView", OnChangeView);
+
         }
 
         private void OnChangeView(object showFirst)

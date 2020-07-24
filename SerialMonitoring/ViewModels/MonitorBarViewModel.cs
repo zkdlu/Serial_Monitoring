@@ -5,7 +5,7 @@ namespace SerialMonitoring.ViewModels
 {
     class MonitorBarViewModel : MonitorViewModel
     {
-        public MonitorBarViewModel()
+        public MonitorBarViewModel() : base()
         {
             var monitors = ChannelManager.Instance.GetMonitors();
             foreach (var monitor in monitors)

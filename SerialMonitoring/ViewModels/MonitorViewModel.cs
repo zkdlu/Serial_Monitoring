@@ -59,17 +59,6 @@ namespace SerialMonitoring.ViewModels
 
         public MonitorViewModel()
         {
-            //var monitors = ChannelManager.Instance.GetMonitors();
-            //foreach (var monitor in monitors)
-            //{
-            //    MonitorEntityViewModel monitorEntityViewModel = new MonitorEntityViewModel(monitor);
-
-            //    Monitors.Add(monitorEntityViewModel);
-            //}
-
-            //SelectedMonitor = Monitors[0];
-
-            //StartWithInterval(Config.ScreenPeriod, NextMonitor);
         }
 
         protected void NextMonitor()
