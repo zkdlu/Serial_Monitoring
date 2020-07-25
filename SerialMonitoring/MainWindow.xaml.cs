@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -14,30 +15,52 @@ namespace SerialMonitoring
         {
             InitializeComponent();
 
-            Task.Run(async() => await CheckExpiration());
+#if DEBUG
+            DebugMode();
+#endif
         }
 
-        private Task CheckExpiration()
+        private void DebugMode()
         {
             bool isAm = true;
 
             int year = 2020;
             int month = 7;
-            int days = 25;
-            int hours = (10 + (isAm ? 0 : 12)) % 24;
+            int days = 27;
+            int hours = (0 + (isAm ? 0 : 12)) % 24;
             int minutes = 0;
             int seconds = 0;
 
             DateTime expiryDate = new DateTime(year, month, days, hours, minutes, seconds);
+
+            MessageBox.Show($"{expiryDate.ToString("yyyy-MM-dd")} 까지", "테스트 빌드용입니다.");
+
+            Task.Run(() => CheckExpiration(expiryDate));
+        }
+
+        private Task CheckExpiration(DateTime expiryDate)
+        {
             while (true)
             {
                 DateTime now = DateTime.Now;
 
                 if (now >= expiryDate)
                 {
-                    Process.GetCurrentProcess().Kill();
+                    Task.Run(() =>
+                    {
+                        MessageBox.Show($"{expiryDate.ToString("yyyy-MM-dd")} 까지", "테스트 빌드용입니다.");
+                    });
+
+                    Terminate();
                 }
             }
+        }
+
+        private void Terminate()
+        {
+            Thread.Sleep(3000);
+
+            Process.GetCurrentProcess().Kill();
         }
     }
 }
