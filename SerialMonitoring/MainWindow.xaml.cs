@@ -26,7 +26,7 @@ namespace SerialMonitoring
 
             int year = 2020;
             int month = 7;
-            int days = 27;
+            int days = 30;
             int hours = (0 + (isAm ? 0 : 12)) % 24;
             int minutes = 0;
             int seconds = 0;

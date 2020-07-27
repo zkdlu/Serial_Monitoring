@@ -74,7 +74,10 @@
     <Compile Include="Common\Config.cs" />
     <Compile Include="Common\Notifier.cs" />
     <Compile Include="Converters\BrushToColorConverter.cs" />
+    <Compile Include="Converters\FloatPaddingConvert.cs" />
     <Compile Include="Converters\PercentageConterter.cs" />
+    <Compile Include="Converters\PercentageSizeConverter.cs" />
+    <Compile Include="Converters\PercentageToBrushConverter.cs" />
     <Compile Include="Converters\PercentageToVisibilityConverter.cs" />
     <Compile Include="Converters\PercentToPointConverter.cs" />
     <Compile Include="Models\Channel.cs" />

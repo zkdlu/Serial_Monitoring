@@ -7,6 +7,9 @@
     <converter:PercentToPointConverter x:Key="percentToPointConverter"/>
     <converter:BrushToColorConverter x:Key="brushToColoerConverter"/>
     <converter:PercentageToVisibilityConverter x:Key="percentageToVisibilityConverter"/>
+    <converter:PercentageToBrushConverter x:Key="percentageToBrushConverter"/>
+    <converter:FloatPaddingConvert x:Key="floatPaddingConvert"/>
+    <converter:PercentageSizeConverter x:Key="percentageSizeConverter"/>
 
     <DataTemplate DataType="{x:Type viewmodels:MonitorGridEntityViewModel}">
         <Grid Margin="0" Width="{Binding Path=Monitor.Width}" Height="{Binding Path=Monitor.Height}"> 
@@ -41,7 +44,6 @@
                             <GradientStop Color="{Binding Path=Channel.Rgb, Converter={StaticResource brushToColoerConverter}}" Offset="0.0"/>
                             <GradientStop Color="White" Offset="0.2"/>
                             <GradientStop Color="White" Offset="0.8"/>
-                            <GradientStop Color="{Binding Path=Channel.Rgb, Converter={StaticResource brushToColoerConverter}}" Offset="1.0"/>
                         </LinearGradientBrush>
                     </DockPanel.Background>
                     <Grid DockPanel.Dock="Top">
@@ -49,40 +51,54 @@
                            Foreground="Black" FontSize="48" FontWeight="Bold"/>
                     </Grid>
                     <Border DockPanel.Dock="Bottom" BorderThickness="1" BorderBrush="Black">
-                        <Grid>
-                            <Grid.Background>
-                                <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                                    <GradientStop Color="White" Offset="0"/>
-                                    <GradientStop Color="{Binding Path=Channel.Rgb, Converter={StaticResource brushToColoerConverter}}" Offset="{Binding Path=Channel.Percentage}"/>
-                                    <GradientStop Color="White" Offset="{Binding Path=Channel.Percentage, UpdateSourceTrigger=PropertyChanged}"/>
-                                </LinearGradientBrush>
-                            </Grid.Background>
+                        <Grid x:Name="parent">
+                            <Rectangle HorizontalAlignment="Left">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                        <GradientStop Color="White" Offset="0"/>
+                                        <GradientStop Color="White" Offset="0.4"/>
+                                        <GradientStop Color="{Binding Path=Channel.Rgb, Converter={StaticResource brushToColoerConverter}}" Offset="0.8"/>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                                <Rectangle.Width>
+                                    <MultiBinding Converter="{StaticResource percentageSizeConverter}">
+                                        <Binding Path="Channel.Percentage"/>
+                                        <Binding ElementName="parent" Path="ActualWidth"/>
+                                    </MultiBinding>
+                                </Rectangle.Width>
+                            </Rectangle>
                             <TextBlock Text="0" 
                                Foreground="Black" FontSize="48" FontWeight="Bold" Margin="20,0,0,0"
                                VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             <TextBlock Text="{Binding Path=Channel.Percentage, Converter={StaticResource percentageConverter}}" 
-                               Foreground="Black" FontSize="48" FontWeight="Bold"
-                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                       FontSize="48" FontWeight="Bold"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock.Foreground>
+                                    <MultiBinding Converter="{StaticResource percentageToBrushConverter}">
+                                        <Binding Path="Channel.Percentage"/>
+                                        <Binding Path="Channel.AlertLimit"/>
+                                    </MultiBinding>
+                                </TextBlock.Foreground>
+                            </TextBlock>
                             <TextBlock Text="{Binding Path=Channel.Max}" 
                                Foreground="Black" FontSize="48" FontWeight="Bold" Margin="0,0,20,0"
                                VerticalAlignment="Center" HorizontalAlignment="Right"/>
                         </Grid>
                     </Border>
                     <Grid>
-                        <TextBlock Text="{Binding Path=Channel.Value}" 
-                           Foreground="Black" FontSize="96" FontWeight="Bold"
-                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding Path=Channel.Value, Converter={StaticResource floatPaddingConvert}, ConverterParameter=2}" 
+                                   FontSize="96" FontWeight="Bold"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock.Foreground>
+                                <MultiBinding Converter="{StaticResource percentageToBrushConverter}">
+                                    <Binding Path="Channel.Percentage"/>
+                                    <Binding Path="Channel.AlertLimit"/>
+                                </MultiBinding>
+                            </TextBlock.Foreground>
+                        </TextBlock>
                     </Grid>
                 </DockPanel>
             </Border>
-            <Grid Opacity="0.7" Background="Red">
-                <Grid.Visibility>
-                    <MultiBinding Converter="{StaticResource percentageToVisibilityConverter}">
-                        <Binding Path="Channel.Percentage"/>
-                        <Binding Path="Channel.AlertLimit"/>
-                    </MultiBinding>
-                </Grid.Visibility>
-            </Grid>
         </Grid>
     </DataTemplate>
 
@@ -95,35 +111,58 @@
                             <GradientStop Color="{Binding Path=Channel.Rgb, Converter={StaticResource brushToColoerConverter}}" Offset="0.0"/>
                             <GradientStop Color="White" Offset="0.2"/>
                             <GradientStop Color="White" Offset="0.8"/>
-                            <GradientStop Color="{Binding Path=Channel.Rgb, Converter={StaticResource brushToColoerConverter}}" Offset="1.0"/>
                         </LinearGradientBrush>
                     </DockPanel.Background>
+                    
                     <StackPanel DockPanel.Dock="Top">
                         <TextBlock Text="{Binding Path=Channel.SubName}" Margin="16,16,0,0"
-                           HorizontalAlignment="Left" VerticalAlignment="Top"
-                           Foreground="Black" FontSize="30" FontWeight="Bold"/>
+                                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                                   Foreground="Black" FontSize="30" FontWeight="Bold"/>
                         <TextBlock Text="{Binding Path=Channel.Unit}" Margin="0,0,8,8"
-                           HorizontalAlignment="Right" VerticalAlignment="Top"
-                           Foreground="Black" FontSize="24" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding Path=Channel.Value}" Margin="0,0,8,8"
-                           HorizontalAlignment="Right" VerticalAlignment="Top"
-                           Foreground="Black" FontSize="48" FontWeight="Bold"/>
+                                   HorizontalAlignment="Right" VerticalAlignment="Top"
+                                   Foreground="Black" FontSize="24" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Path=Channel.Value, Converter={StaticResource floatPaddingConvert}, ConverterParameter=2}" Margin="0,0,8,8"
+                                   HorizontalAlignment="Right" VerticalAlignment="Top"
+                                   FontSize="48" FontWeight="Bold">
+                            <TextBlock.Foreground>
+                                <MultiBinding Converter="{StaticResource percentageToBrushConverter}">
+                                    <Binding Path="Channel.Percentage"/>
+                                    <Binding Path="Channel.AlertLimit"/>
+                                </MultiBinding>
+                            </TextBlock.Foreground>
+                        </TextBlock>
                     </StackPanel>
                     <Border Margin="20" BorderBrush="{Binding Path=Channel.Rgb}" BorderThickness="1">
-                        <Grid>
-                            <Grid.Background>
-                                <LinearGradientBrush StartPoint="0.5,1" EndPoint="0.5,0">
-                                    <GradientStop Color="White" Offset="0"/>
-                                    <GradientStop Color="{Binding Path=Channel.Rgb, Converter={StaticResource brushToColoerConverter}}" Offset="{Binding Path=Channel.Percentage}"/>
-                                    <GradientStop Color="White" Offset="{Binding Path=Channel.Percentage}"/>
-                                </LinearGradientBrush>
-                            </Grid.Background>
+                        <Grid x:Name="parent">
+                            <Rectangle VerticalAlignment="Bottom">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                                        <GradientStop Color="{Binding Path=Channel.Rgb, Converter={StaticResource brushToColoerConverter}}" Offset="0"/>
+                                        <GradientStop Color="White" Offset="0.4"/>
+                                        <GradientStop Color="White" Offset="0.6"/>
+                                        <GradientStop Color="{Binding Path=Channel.Rgb, Converter={StaticResource brushToColoerConverter}}" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                                <Rectangle.Height>
+                                    <MultiBinding Converter="{StaticResource percentageSizeConverter}">
+                                        <Binding Path="Channel.Percentage"/>
+                                        <Binding ElementName="parent" Path="ActualHeight"/>
+                                    </MultiBinding>
+                                </Rectangle.Height>
+                            </Rectangle>
                             <TextBlock Text="0" 
                                Foreground="Black" FontSize="48" FontWeight="Bold" Margin="0,0,0,20"
                                VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
                             <TextBlock Text="{Binding Path=Channel.Percentage, Converter={StaticResource percentageConverter}}" 
-                               Foreground="Black" FontSize="48" FontWeight="Bold"
-                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                       FontSize="48" FontWeight="Bold"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock.Foreground>
+                                    <MultiBinding Converter="{StaticResource percentageToBrushConverter}">
+                                        <Binding Path="Channel.Percentage"/>
+                                        <Binding Path="Channel.AlertLimit"/>
+                                    </MultiBinding>
+                                </TextBlock.Foreground>
+                            </TextBlock>
                             <TextBlock Text="{Binding Path=Channel.Max}" 
                                Foreground="Black" FontSize="48" FontWeight="Bold" Margin="0,20,0,0"
                                VerticalAlignment="Top" HorizontalAlignment="Center"/>
@@ -131,14 +170,6 @@
                     </Border>
                 </DockPanel>
             </Border>
-            <Grid Opacity="0.7" Background="Red">
-                <Grid.Visibility>
-                    <MultiBinding Converter="{StaticResource percentageToVisibilityConverter}">
-                        <Binding Path="Channel.Percentage"/>
-                        <Binding Path="Channel.AlertLimit"/>
-                    </MultiBinding>
-                </Grid.Visibility>
-            </Grid>
         </Grid>
     </DataTemplate>
 

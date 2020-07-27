@@ -67,7 +67,7 @@ namespace SerialMonitoring.Common
             {
                 if (random.NextDouble() <= 0.3)
                 {
-                    channel.Value = random.Next(1, (int)channel.Max);
+                    channel.Value = random.NextDouble() * channel.Max;
                 }
             }
         }

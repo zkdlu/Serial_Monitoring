@@ -4,16 +4,13 @@ using System.Windows.Data;
 
 namespace SerialMonitoring.Converters
 {
-    public class PercentageConterter : IValueConverter
+    class FloatPaddingConvert : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is double d)
-            {
-                d = Math.Round(d * 100);
-                return $"{d} %";
-            }
-            return "Convert Error";
+            double d = System.Convert.ToDouble(value);
+
+            return $"{d:F2}";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
